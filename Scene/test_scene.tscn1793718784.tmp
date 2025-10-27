@@ -1,0 +1,173 @@
+[gd_scene load_steps=25 format=4 uid="uid://bqpqo3aev1bi1"]
+
+[ext_resource type="Script" uid="uid://chyskr0uqev1f" path="res://Scene/test_scene.gd" id="1_huixf"]
+[ext_resource type="Texture2D" uid="uid://cmdfp7p387aqx" path="res://Assets/tile/Untitled_Artwork(5).png" id="3_nk2wp"]
+[ext_resource type="Script" uid="uid://dr2ctym4mdogj" path="res://Scripts/tile_map_controller.gd" id="3_w5jy8"]
+[ext_resource type="Texture2D" uid="uid://bmlvl78mqnqix" path="res://Assets/rock/Untitled_Artwork-1(1).png" id="3_yg8v8"]
+[ext_resource type="PackedScene" uid="uid://pqp7eql8gghl" path="res://Scene/character.tscn" id="4_huixf"]
+[ext_resource type="PackedScene" uid="uid://e6fdae3032g3" path="res://Scene/rock.tscn" id="4_pyarj"]
+[ext_resource type="PackedScene" uid="uid://cgd0ksnrtlb2y" path="res://Scene/enemy.tscn" id="5_xdm7g"]
+[ext_resource type="Texture2D" uid="uid://b3iunvm5alqna" path="res://Assets/tile/Untitled_Artwork(4).png" id="6_yg8v8"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xdm7g"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yg8v8"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mtw86"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pyarj"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nk2wp"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cy2ab"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r624d"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iobcs"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h1wrj"]
+vertices = PackedVector2Array(155, 155, -155, 155, -155, -155, 155, -155)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-155, -155, 155, -155, 155, 155, -155, 155)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nk2wp"]
+texture = ExtResource("6_yg8v8")
+margins = Vector2i(85, 50)
+texture_region_size = Vector2i(305, 307)
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xdm7g")
+2:0/0 = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pyarj")
+3:0/0 = 0
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_r624d")
+4:0/0 = 0
+5:0/0 = 0
+1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_yg8v8")
+2:1/0 = 0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nk2wp")
+3:1/0 = 0
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iobcs")
+4:1/0 = 0
+5:1/0 = 0
+1:2/0 = 0
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mtw86")
+2:2/0 = 0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_cy2ab")
+3:2/0 = 0
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h1wrj")
+4:2/0 = 0
+5:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cy2ab"]
+tile_size = Vector2i(310, 310)
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "center_coords"
+custom_data_layer_0/type = 5
+sources/0 = SubResource("TileSetAtlasSource_nk2wp")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pyarj"]
+texture = ExtResource("3_nk2wp")
+margins = Vector2i(65, 50)
+texture_region_size = Vector2i(310, 310)
+4:4/0 = 0
+4:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nk2wp"]
+tile_size = Vector2i(310, 310)
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "center_coords"
+custom_data_layer_0/type = 5
+sources/1 = SubResource("TileSetAtlasSource_pyarj")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtw86"]
+texture = ExtResource("3_yg8v8")
+margins = Vector2i(20, 25)
+texture_region_size = Vector2i(220, 220)
+0:0/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_nk2wp"]
+scenes/1/scene = ExtResource("4_pyarj")
+
+[sub_resource type="TileSet" id="TileSet_pyarj"]
+tile_size = Vector2i(220, 220)
+sources/0 = SubResource("TileSetAtlasSource_mtw86")
+sources/1 = SubResource("TileSetScenesCollectionSource_nk2wp")
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_huixf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(109, 97)
+zoom = Vector2(2.38, 2.38)
+
+[node name="Ground" type="TileMapLayer" parent="."]
+scale = Vector2(0.115, 0.115)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAFAAAAAAADAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAEAAEAAAACAAEAAAAEAAIAAAACAAEAAAAEAAMAAAACAAEAAAADAAMAAAACAAEAAAACAAMAAAACAAEAAAABAAMAAAACAAEAAAABAAIAAAACAAEAAAACAAIAAAACAAEAAAADAAIAAAACAAEAAAABAAQAAAACAAEAAAACAAQAAAACAAEAAAADAAQAAAACAAEAAAAEAAQAAAACAAEAAAAFAAEAAAADAAEAAAAFAAIAAAADAAEAAAAFAAMAAAADAAEAAAAFAAQAAAADAAEAAAAAAAUAAAABAAIAAAACAAUAAAACAAIAAAABAAUAAAACAAIAAAADAAUAAAACAAIAAAAEAAUAAAACAAIAAAAFAAUAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_cy2ab")
+
+[node name="SelectTile" type="TileMapLayer" parent="."]
+scale = Vector2(0.115, 0.115)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAFAAAAAAADAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAEAAEAAAACAAEAAAAEAAIAAAACAAEAAAAEAAMAAAACAAEAAAADAAMAAAACAAEAAAACAAMAAAACAAEAAAABAAMAAAACAAEAAAABAAIAAAACAAEAAAACAAIAAAACAAEAAAADAAIAAAACAAEAAAABAAQAAAACAAEAAAACAAQAAAACAAEAAAADAAQAAAACAAEAAAAEAAQAAAACAAEAAAAFAAEAAAADAAEAAAAFAAIAAAADAAEAAAAFAAMAAAADAAEAAAAFAAQAAAADAAEAAAAAAAUAAAABAAIAAAACAAUAAAACAAIAAAABAAUAAAACAAIAAAADAAUAAAACAAIAAAAEAAUAAAACAAIAAAAFAAUAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_nk2wp")
+
+[node name="Rock" type="TileMapLayer" parent="."]
+scale = Vector2(0.162, 0.162)
+tile_map_data = PackedByteArray("AAADAAIAAQAAAAAAAQACAAQAAQAAAAAAAQABAAQAAQAAAAAAAQAEAAQAAQAAAAAAAQAEAAUAAQAAAAAAAQAFAAQAAQAAAAAAAQAFAAUAAQAAAAAAAQACAAMAAQAAAAAAAQABAAMAAQAAAAAAAQAFAAMAAQAAAAAAAQACAAIAAQAAAAAAAQABAAIAAQAAAAAAAQAFAAIAAQAAAAAAAQA=")
+tile_set = SubResource("TileSet_pyarj")
+
+[node name="Player" parent="." instance=ExtResource("4_huixf")]
+position = Vector2(60, 52)
+
+[node name="TileMapController" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "player")]
+script = ExtResource("3_w5jy8")
+tilemap = NodePath("../SelectTile")
+player = NodePath("../Player")
+
+[node name="Spawn" type="Marker2D" parent="."]
+position = Vector2(89, 195)
+
+[node name="Enemy" parent="." instance=ExtResource("5_xdm7g")]
+position = Vector2(196, 17)
