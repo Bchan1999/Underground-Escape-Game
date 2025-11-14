@@ -1,11 +1,13 @@
 extends Node2D
 class_name TileMapController
 
+@export_category("Tile Maps")
 @export var select_tile_map : TileMapLayer
 @export var rock_map : TileMapLayer
 @export var ground_map : TileMapLayer
-@export var player : CharacterBody2D
 
+@export_category("Entities")
+@export var player : CharacterBody2D
 @export var enemy : CharacterBody2D
 
 var MAIN_SOURCE = 1
@@ -23,11 +25,17 @@ var mouse_pos
 var pathfinding = []
 
 func _ready() -> void:
-	calculate_pathfinding(enemy.position, player.position)
+	if Debug.debugging:
+		print("READY START: TileMapController")
+		
+	get_pathfinding(enemy.position, player.position)
+	SignalBus.rock_tile_destroyed.connect(remove_tile)
 	
-func calculate_pathfinding(start_pos, goal_pos):
-	var enemy_pos_local = ground_map.to_local(start_pos)
-	var enemy_on_map = ground_map.local_to_map(enemy_pos_local)
+	if Debug.debugging:
+		print("READY END: TileMapController")
+		
+func get_pathfinding(start_pos, goal_pos):
+	var enemy_on_map = convert_ground_map_coords(start_pos)
 	
 	var used_cells = ground_map.get_used_cells()
 	
@@ -45,9 +53,6 @@ func calculate_pathfinding(start_pos, goal_pos):
 			dict[x] = "free"
 		else:
 			dict[x] = "blocked"
-		
-	print(dict)
-
 	
 	var traveled_to = []
 	var linkedPath = {}
@@ -61,7 +66,6 @@ func calculate_pathfinding(start_pos, goal_pos):
 		#checks the first neihbor cells of enemy
 		for y in neighbor_cells:
 			if dict.get(y) && dict.get(y) != "blocked":
-				print("this is the key", y)
 				if y not in traveled_to:
 					traveled_to.append(y)
 					linkedPath[y] = pre_cell
@@ -74,16 +78,10 @@ func calculate_pathfinding(start_pos, goal_pos):
 			
 		num += 1
 		
-		
-	print(linkedPath)
-	var player_pos_local = ground_map.to_local(goal_pos)
-	var player_on_map = ground_map.local_to_map(player_pos_local)
+	var player_on_map = convert_ground_map_coords(goal_pos)
 	
 	var goal = player_on_map
-	
-	print("goal: " , goal)
-	print("enemy pos", enemy_on_map)
-	#5
+
 	var g = 0
 	while g < linkedPath.size():
 		if linkedPath.get(goal) == null:
@@ -93,28 +91,21 @@ func calculate_pathfinding(start_pos, goal_pos):
 		g += 1
 		
 	pathfinding.reverse()
-		
-func get_pathfinding():
 	return pathfinding
+	
 	
 func _process(delta: float) -> void:
 	var camera = get_viewport().get_camera_2d()
 	var local_pos = select_tile_map.to_local(camera.get_global_mouse_position())
 	mouse_pos = select_tile_map.local_to_map(local_pos)
-	
-	
-	
-	#var player_pos = player.position
-	#var player_pos_local = ground_map.to_local(player_pos)
-	#var player_on_map = ground_map.local_to_map(player_pos_local)
-	#print("player_on_map" , player_on_map)
-	
+
 	if clickable:
 		for x in clickable:
 			if (mouse_pos == x):
 				GameSingleton.set_can_click(true)
 				if (previousCell == mouse_pos):
 					select_tile_map.set_cell(previousCell, MAIN_SOURCE, SELECT_TILE)
+					#print("PREVIOUS CELL" , previousCell)
 				else:
 					select_tile_map.set_cell(mouse_pos, MAIN_SOURCE, SELECT_TILE)
 					select_tile_map.erase_cell(previousCell)
@@ -126,16 +117,37 @@ func _process(delta: float) -> void:
 		
 	mouse_is_not_on_tile = true
 	
-	#print(GameSingleton.get_can_click())
-
 
 func _on_player_moved_pos() -> void:
 	if (previousCell):
 		select_tile_map.erase_cell(previousCell)
 	clickable_pos = []
-	var player_pos = select_tile_map.to_local(player.global_position)
-	var player_pos_map = select_tile_map.local_to_map(player_pos)
+	#var player_pos = select_tile_map.to_local(player.global_position)
+	#var player_pos_map = select_tile_map.local_to_map(player_pos)
+	var player_pos_map = convert_ground_map_coords(player.global_position)
 	clickable = select_tile_map.get_surrounding_cells(player_pos_map)
-	print(clickable)
 	for item in clickable:
 		clickable_pos.append(select_tile_map.local_to_map(item))
+		
+func convert_ground_map_coords(old_coords: Vector2) -> Vector2i:
+	var player_pos_local = ground_map.to_local(old_coords)
+	var player_on_map = ground_map.local_to_map(player_pos_local)
+	return player_on_map
+	
+func convert_rock_map_coords(old_coords: Vector2) -> Vector2i:
+	var player_pos_local = rock_map.to_local(old_coords)
+	var player_on_map = rock_map.local_to_map(player_pos_local)
+	return player_on_map
+
+func remove_tile(entity : Node2D):
+	var tile_coords = convert_rock_map_coords(entity.global_position)
+	#print(rock_map.get_used_cells())
+	#print("TILE COORDS", tile_coords)
+	#print("BEFORE!!")
+	rock_map.erase_cell(tile_coords)
+	#print(rock_map.get_used_cells())
+	#print("AFTER!!")
+	#
+	#
+	#print(entity)
+	

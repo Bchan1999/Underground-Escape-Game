@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s685e"]
 size = Vector2(28, 28)
 
-[node name="BasicEnemy" type="CharacterBody2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "ray_cast_down", "ray_cast_up")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "ray_cast_down", "ray_cast_up")]
 script = ExtResource("1_4jekx")
 ray_cast_right = NodePath("Right")
 ray_cast_left = NodePath("Left")

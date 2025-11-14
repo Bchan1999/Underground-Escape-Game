@@ -26,8 +26,6 @@ func input_check():
 		var local_pos = tilemap.to_local(camera.get_global_mouse_position())
 		var clicked_cell = tilemap.local_to_map(local_pos)
 		var player_pos = tilemap.local_to_map(tilemap.to_local(player.position))
-		#print(clicked_cell)
-		print(player_pos)
 		if (player_pos == clicked_cell):
 			clicked = true
 			

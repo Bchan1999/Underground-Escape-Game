@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pqp7eql8gghl"]
+[gd_scene load_steps=17 format=3 uid="uid://pqp7eql8gghl"]
 
 [ext_resource type="Script" uid="uid://0qveet2ebhno" path="res://Scene/character.gd" id="1_tgux0"]
 [ext_resource type="Script" uid="uid://b6q6qinowpmgu" path="res://Scene/collision_shape_2d.gd" id="3_46cb6"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://bmxufy3mnfw53" path="res://Scripts/state_machine.gd" id="7_1cgd8"]
 [ext_resource type="Texture2D" uid="uid://cdx44kvavle4o" path="res://Assets/character/Untitled_Artwork-2.png" id="7_oncsw"]
 [ext_resource type="Script" uid="uid://6f6f1qoqs5ov" path="res://Scripts/idle.gd" id="8_oncsw"]
-[ext_resource type="Script" uid="uid://d212jfrh0ate7" path="res://Scripts/run.gd" id="9_cp0d1"]
 [ext_resource type="Script" uid="uid://b8bj5ag1scn7v" path="res://Scripts/mine.gd" id="10_uk2ye"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cp0d1"]
@@ -165,10 +164,14 @@ _data = {
 &"run": SubResource("Animation_v2g5y")
 }
 
-[node name="Node2D" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim", "ray_cast_right", "ray_cast_left", "ray_cast_down", "ray_cast_up") groups=["Player"]]
 script = ExtResource("1_tgux0")
 sprite = NodePath("AnimatedSprite2D")
 anim = NodePath("AnimationPlayer")
+ray_cast_right = NodePath("Right")
+ray_cast_left = NodePath("Left")
+ray_cast_down = NodePath("Down")
+ray_cast_up = NodePath("Up")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
@@ -177,7 +180,7 @@ sprite_frames = SubResource("SpriteFrames_cp0d1")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(-7, 2)
 shape = SubResource("RectangleShape2D_b6o27")
 script = ExtResource("3_46cb6")
@@ -196,9 +199,32 @@ initial_state = NodePath("Idle")
 script = ExtResource("8_oncsw")
 anim = NodePath("../../AnimationPlayer")
 
-[node name="Run" type="Node2D" parent="StateMachine"]
-script = ExtResource("9_cp0d1")
-
 [node name="Mine" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("anim")]
 script = ExtResource("10_uk2ye")
 anim = NodePath("../../AnimationPlayer")
+
+[node name="Right" type="RayCast2D" parent="."]
+modulate = Color(0.26882762, 0.48974234, 0.6268332, 1)
+target_position = Vector2(41, 0)
+collide_with_areas = true
+
+[node name="Left" type="RayCast2D" parent="."]
+target_position = Vector2(-41, 0)
+collide_with_areas = true
+
+[node name="Down" type="RayCast2D" parent="."]
+target_position = Vector2(0, 41)
+collide_with_areas = true
+
+[node name="Up" type="RayCast2D" parent="."]
+target_position = Vector2(0, -41)
+collide_with_areas = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 556.0
+offset_right = 103.0
+offset_bottom = 579.0
+scale = Vector2(2.024064, 2.0093145)
+text = "Health: 10/10"

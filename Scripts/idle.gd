@@ -8,7 +8,6 @@ func enter() -> void:
 	anim.play("idle")
 	pass # Replace with function body
 
-
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("mine"):
 		GameSingleton.player_action.emit()

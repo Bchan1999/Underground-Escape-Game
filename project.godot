@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="MineGame"
+config/name="Underground-Escape"
 run/main_scene="uid://bqpqo3aev1bi1"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameSingleton="*res://Scripts/Global/GameSingleton.gd"
+Debug="*res://Scripts/Global/Debug.gd"
+SignalBus="*res://Scripts/Global/SignalBus.gd"
 
 [display]
 
@@ -26,6 +28,10 @@ window/size/viewport_height=600
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+Player=""
 
 [input]
 
